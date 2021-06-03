@@ -12,6 +12,7 @@ const caps = require('ssb-caps');
 const ssbKeys = require('ssb-keys');
 const makeConfig = require('ssb-config/inject');
 const SecretStack = require('secret-stack');
+const validate = require('ssb-validate2-rsjs');
 import settingsUtils = require('./plugins/settingsUtils');
 import bluetoothTransport = require('./plugins/bluetooth');
 
@@ -129,3 +130,13 @@ SecretStack()
   .use(require('./plugins/dbUtils')) // needs: db2, syncing
   .use(require('./plugins/votes')) // needs: db2
   .call(null, config);
+
+try {
+  console.log('WILL RUN validate2');
+  const x = validate.validateSingle({foo: 'bar'});
+  console.log('DID RUN validate2 with result:');
+  console.log(x);
+} catch (err) {
+  console.log('DID CATCH ERROR FROM validate2:');
+  console.log(err);
+}
