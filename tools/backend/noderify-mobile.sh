@@ -33,6 +33,7 @@ cd ./nodejs-assets/nodejs-project;
 #   supports-color: optional dependency within package `debug`
 #   electron: not used on mobile, it's specific to desktop
 #   multiserver-electron-ipc: not used on mobile, it's specific to desktop
+#   ssb-validate2-rsjs-wasm: not used on mobile, it's specific to browsers
 #   utf-8-validate: because we want nodejs-mobile to load its native bindings
 $(npm bin)/noderify \
   --replace.bindings=bindings-noderify-nodejs-mobile \
@@ -49,6 +50,7 @@ $(npm bin)/noderify \
   --filter=supports-color \
   --filter=electron \
   --filter=multiserver-electron-ipc \
+  --filter=ssb-validate2-rsjs-wasm \
   --filter=utf-8-validate \
   index.js > _index.js;
 rm index.js; mv _index.js index.js;
