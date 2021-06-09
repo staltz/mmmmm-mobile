@@ -57,7 +57,7 @@
     "ssb-suggest-lite": "1.0.3",
     "ssb-threads": "8.0.0",
     "ssb-typescript": "2.5.0",
-    "ssb-validate2-rsjs": "ssb-ngi-pointer/ssb-validate2-rsjs#nodejs-mobile2",
+    "ssb-validate2-rsjs": "0.4.0",
     "staltz-multiserver": "3.3.6-1",
     "utf-8-validate": "5.0.3"
   },
