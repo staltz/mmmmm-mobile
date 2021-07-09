@@ -13,6 +13,7 @@ import {makeFSDriver} from './lib/frontend/drivers/fs';
 import {makeEventBusDriver} from './lib/frontend/drivers/eventbus';
 import {makeLocalizationDriver} from './lib/frontend/drivers/localization';
 import {central} from './lib/frontend/screens/central';
+import {compose} from './lib/frontend/screens/compose';
 import {global} from './lib/frontend/screens/global';
 import {welcome} from './lib/frontend/screens/welcome';
 import {profile} from './lib/frontend/screens/profile';
@@ -63,7 +64,7 @@ const screens = {
   // [Screens.Drawer]: withState(drawer),
   // [Screens.DialogAbout]: dialogAbout,
   // [Screens.DialogThanks]: dialogThanks,
-  // [Screens.Compose]: withState(compose),
+  [Screens.Compose]: withState(compose),
   // [Screens.ComposeAudio]: withState(composeAudio),
   [Screens.Thread]: withState(thread),
   // [Screens.Conversation]: withState(conversation),

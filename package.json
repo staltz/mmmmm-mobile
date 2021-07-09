@@ -72,7 +72,7 @@
     "cycle-native-keyboard": "1.2.0",
     "cycle-native-linking": "2.0.1",
     "cycle-native-navigation": "8.0.0",
-    "cycle-native-navigation-web": "0.3.0",
+    "cycle-native-navigation-web": "0.4.1",
     "cycle-native-share": "1.1.0",
     "cycle-native-toastandroid": "1.1.0",
     "electron-ssb-client": "1.2.0",
