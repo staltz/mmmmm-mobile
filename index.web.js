@@ -11,6 +11,7 @@ import {run, GlobalScreen} from 'cycle-native-navigation-web';
 import {ssbDriver} from './lib/frontend/drivers/ssb';
 import {makeFSDriver} from './lib/frontend/drivers/fs';
 import {makeEventBusDriver} from './lib/frontend/drivers/eventbus';
+import {dialogDriver} from './lib/frontend/drivers/dialogs';
 import {makeLocalizationDriver} from './lib/frontend/drivers/localization';
 import {central} from './lib/frontend/screens/central';
 import {compose} from './lib/frontend/screens/compose';
@@ -46,11 +47,12 @@ const drivers = {
   orientation: () => xs.never(),
   globalEventBus: makeEventBusDriver(),
   linking: () => xs.never(),
-  dialog: (x) => ({
-    alert: () => xs.never(),
-    prompt: () => xs.never(),
-    showPicker: () => xs.never(),
-  }),
+  dialog: dialogDriver,
+  //dialog: (x) => ({
+  //  alert: () => xs.never(),
+  //  prompt: () => xs.never(),
+  //  showPicker: () => xs.never(),
+  //}),
   localization: makeLocalizationDriver(),
   keyboard: (x) => ({
     events: () => xs.never(),

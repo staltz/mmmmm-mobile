@@ -5,8 +5,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import xs, {Listener, Stream} from 'xstream';
-import DialogAndroid from 'react-native-dialogs';
 import {Platform, Alert, AlertButton} from 'react-native';
+const DialogAndroid =
+  Platform.OS === 'android' ? require('react-native-dialogs') : null;
 
 export type Command =
   | {type: 'dismiss'}
@@ -138,7 +139,7 @@ export class DialogSource {
   ): Stream<PickerAction> {
     if (Platform.OS === 'android') {
       return xs.fromPromise(DialogAndroid.showPicker(title, content, options));
-    } else {
+    } else if (Platform.OS === 'ios') {
       return xs.create({
         start: (listener: Listener<PickerAction>) => {
           const buttons: Array<AlertButton> = [];
@@ -164,6 +165,9 @@ export class DialogSource {
         },
         stop: () => {},
       });
+    } else {
+      window.alert(options?.items?.[0]?.label);
+      return xs.never();
     }
   }
 
