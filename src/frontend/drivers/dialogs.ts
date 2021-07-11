@@ -6,6 +6,7 @@
 
 import xs, {Listener, Stream} from 'xstream';
 import {Platform, Alert, AlertButton} from 'react-native';
+import {GlobalEventBus} from './eventbus';
 const DialogAndroid =
   Platform.OS === 'android' ? require('react-native-dialogs') : null;
 
@@ -166,7 +167,11 @@ export class DialogSource {
         stop: () => {},
       });
     } else {
-      window.alert(options?.items?.[0]?.label);
+      GlobalEventBus.dispatch({
+        type: 'pickerToggled',
+        open: true,
+        content: 'idk',
+      });
       return xs.never();
     }
   }

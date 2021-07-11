@@ -8,7 +8,11 @@ import xs, {Stream} from 'xstream';
 import sampleCombine from 'xstream/extra/sampleCombine';
 import {ReactSource} from '@cycle/react';
 import {State} from './model';
-import {GlobalEvent, DrawerToggleOnCentralScreen} from '../../drivers/eventbus';
+import {
+  GlobalEvent,
+  DrawerToggleOnCentralScreen,
+  PickerToggled,
+} from '../../drivers/eventbus';
 import sample from 'xstream-sample';
 
 type TabID = State['currentTab'];
@@ -86,6 +90,10 @@ export default function intent(
     )
     .map((event) => event.open);
 
+  const pickerToggled$ = globalEventBus.filter(
+    (event): event is PickerToggled => event.type === 'pickerToggled',
+  );
+
   return {
     changeTab$,
     scrollToPublicTop$,
@@ -95,5 +103,6 @@ export default function intent(
     backToPublicTab$,
     exitApp$,
     drawerToggled$,
+    pickerToggled$,
   };
 }

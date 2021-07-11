@@ -14,6 +14,7 @@ import {State as PrivateTabState} from './private-tab/model';
 import {State as ActivityTabState} from './activity-tab/model';
 import {State as ConnectionsTabState} from './connections-tab/model';
 import {SSBSource} from '../../drivers/ssb';
+import {PickerToggled} from '../../drivers/eventbus';
 
 export type State = {
   selfFeedId: FeedId;
@@ -32,6 +33,8 @@ export type State = {
   indexingProgress: number;
   canPublishSSB: boolean;
   isDrawerOpen: boolean;
+  isPickerOpen: boolean;
+  pickerContent: string;
 };
 
 /**
@@ -178,6 +181,7 @@ export type Actions = {
   changeTab$: Stream<State['currentTab']>;
   backToPublicTab$: Stream<null>;
   drawerToggled$: Stream<boolean>;
+  pickerToggled$: Stream<PickerToggled>;
 };
 
 export default function model(
@@ -199,6 +203,8 @@ export default function model(
         indexingProgress: 0,
         scrollHeaderBy: new Animated.Value(0),
         isDrawerOpen: false,
+        isPickerOpen: false,
+        pickerContent: '',
         canPublishSSB: true,
       };
     }
@@ -258,6 +264,17 @@ export default function model(
       },
   );
 
+  const pickerToggledReducer$ = actions.pickerToggled$.map(
+    (pickerInfo) =>
+      function pickerToggledReducer(prev: State): State {
+        return {
+          ...prev,
+          isPickerOpen: pickerInfo.open,
+          pickerContent: pickerInfo.content,
+        };
+      },
+  );
+
   return xs.merge(
     initReducer$,
     setSelfFeedId$,
@@ -267,5 +284,6 @@ export default function model(
     changeTabReducer$,
     backToPublicTabReducer$,
     isDrawerOpenReducer$,
+    pickerToggledReducer$,
   );
 }

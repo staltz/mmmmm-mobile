@@ -35,13 +35,20 @@ export interface AudioBlobComposed {
   blobId: string;
 }
 
+export interface PickerToggled {
+  type: 'pickerToggled';
+  open: boolean;
+  content: string;
+}
+
 export type GlobalEvent =
   | LocalizationLoaded
   | TriggerFeedCypherlink
   | TriggerMsgCypherlink
   | HardwareBackOnCentralScreen
   | DrawerToggleOnCentralScreen
-  | AudioBlobComposed;
+  | AudioBlobComposed
+  | PickerToggled;
 
 export class EventBus {
   public _stream?: Stream<GlobalEvent>;

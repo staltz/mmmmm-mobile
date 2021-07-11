@@ -12,6 +12,7 @@ import {
   Platform,
   TouchableNativeFeedback,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import {h} from '@cycle/react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -415,6 +416,11 @@ export default function view(
         connectionsTab,
       ]) =>
         h(MenuProvider, {customStyles: {backdrop: styles.menuBackdrop}}, [
+          h(Modal, {transparent: true, visible: state.isPickerOpen}, [
+            h(View, {style: {backgroundColor: 'white'}}, [
+              h(Text, state.pickerContent),
+            ]),
+          ]),
           h(View, {style: styles.root}, [
             // h(RNBridgeDebug),
             topBar,
